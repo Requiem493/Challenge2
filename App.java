@@ -1,9 +1,6 @@
 
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.WindowConstants;
-import javax.swing.ImageIcon;
+import javax.swing.*;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -21,12 +18,14 @@ public class App {
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(null); // no layout so you can put things wherever you want
         mainPanel.setBackground(Color.blue);
-
-        Image QUBAY = new ImageIcon("QUBAY.webp").getImage();
-        Graphics graphics = QUBAY.getGraphics();
-        graphics.drawImage(QUBAY, 0, 0, mainPanel);
-        
         frame.setContentPane(mainPanel);
+
+        ImageIcon QUBAY = new ImageIcon("QUBAY.png");
+        JLabel imageLabel = new JLabel(QUBAY);
+        imageLabel.setSize(1024, 1024);
+        mainPanel.add(imageLabel);
+
+
         frame.setVisible(true);
 
     }
