@@ -1,4 +1,4 @@
-package Challenge2;
+
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -19,5 +19,42 @@ public class App {
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(null); // no layout so you can put things wherever you want
         mainPanel.setBackground(Color.blue);
+    }
+
+    private static void initializeRepo() {
+
+    }
+
+    private static void createGitignore() {
+
+    }
+
+    private static void createReadMe() {
+
+    }
+
+    private static void createInitCommit() {
+
+    }
+
+    private static void createGitHubRepo() {
+
+    }
+
+    private static void setOrigin() {
+
+    }
+
+    private static void pushCommit() {
+
+    }
+
+    private static void displayURL() {
+
+    }
+
+    private static void getAPIKey() {
+        //Gets key from a file named "key.txt"
+        //File has been gitignored
     }
 }
