@@ -65,5 +65,6 @@ public class App {
     private static void getAPIKey() {
         //Gets key from a file named "key.txt"
         //File has been gitignored
+
     }
 }
