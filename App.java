@@ -1,11 +1,16 @@
-
+import git.tools.client.GitSubprocessClient;
 
 import javax.swing.*;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Image;
+import java.awt.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
 
 public class App {
+    private static String projectPath;
+    private static String projectName;
+    private static GitSubprocessClient gitSubprocessClient;
     public static void main(String[] args) {
         // create JFrame
         JFrame frame = new JFrame("QBay");
@@ -27,19 +32,27 @@ public class App {
 
 
         frame.setVisible(true);
+        try {
+            createReadMe();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
     private static void initializeRepo() {
-
+        gitSubprocessClient.gitInit();
     }
 
     private static void createGitignore() {
-
     }
 
-    private static void createReadMe() {
-
+    private static void createReadMe() throws IOException {
+        File readMe = new File(String.format("%s/README.md", projectPath));
+        readMe.createNewFile();
+        FileWriter writer = new FileWriter(readMe);
+        writer.write(String.format("# %s", projectName));
+        writer.close();
     }
 
     private static void createInitCommit() {
@@ -62,9 +75,10 @@ public class App {
 
     }
 
-    private static void getAPIKey() {
+    private static String getAPIKey() throws IOException {
         //Gets key from a file named "key.txt"
         //File has been gitignored
-
+        Scanner keyReader = new Scanner(new File("key.txt"));
+        return keyReader.nextLine();
     }
 }
