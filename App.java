@@ -1,6 +1,7 @@
 import git.tools.client.GitSubprocessClient;
 import github.tools.client.GitHubApiClient;
 import github.tools.client.RequestParams;
+import github.tools.responseObjects.CreateRepoResponse;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +18,7 @@ public class App {
     private static GitSubprocessClient gitSubprocessClient;
     private static GitHubApiClient gitHubApiClient;
     private static String userName;
-    private static String repoName;
+    private static String repoUrl;
 
     public static void main(String[] args) {
         // create JFrame
@@ -77,15 +78,16 @@ public class App {
             throw new RuntimeException(e);
         }
         RequestParams requestParams = new RequestParams();
-        requestParams.addParam("name", repoName);
+        requestParams.addParam("name", projectName);
         requestParams.addParam("description", description);
         requestParams.addParam("private", isPrivate);
 
-        gitHubApiClient.createRepo(requestParams);
+        CreateRepoResponse createRepoResponse = gitHubApiClient.createRepo(requestParams);
+        repoUrl = createRepoResponse.getUrl();
     }
 
     private static void setOrigin() {
-        gitSubprocessClient.gitRemoteAdd("origin", String.format("%s.git", getGitHubUrl()));
+        gitSubprocessClient.gitRemoteAdd("origin", String.format("%s.git", repoUrl));
     }
 
     private static void pushCommit() {
@@ -101,9 +103,5 @@ public class App {
         //File has been gitignored
         Scanner keyReader = new Scanner(new File("key.txt"));
         return keyReader.nextLine();
-    }
-
-    private static String getGitHubUrl() {
-        return gitHubApiClient.getRepoInfo(userName, repoName).getUrl();
     }
 }
