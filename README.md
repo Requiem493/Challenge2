@@ -11,7 +11,7 @@ To run, execute App.java, and follow the on-screen instructions.
 
 ### Requisites
 
-Java 1.4+
+Java 7+
 
 #### External Libraries
 
