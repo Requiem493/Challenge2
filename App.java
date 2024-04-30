@@ -1,4 +1,7 @@
 import git.tools.client.GitSubprocessClient;
+import github.tools.client.GitHubApiClient;
+import github.tools.client.RequestParams;
+import github.tools.responseObjects.CreateRepoResponse;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,6 +14,9 @@ public class App {
     private static String projectPath;
     private static String projectName;
     private static GitSubprocessClient gitSubprocessClient;
+    private static GitHubApiClient gitHubApiClient;
+    private static String userName;
+    private static String repoName;
     public static void main(String[] args) {
         // create JFrame
         JFrame frame = new JFrame("QBay");
@@ -32,15 +38,11 @@ public class App {
 
 
         frame.setVisible(true);
-        try {
-            createReadMe();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
 
     }
 
     private static void initializeRepo() {
+        gitSubprocessClient = new GitSubprocessClient(projectPath);
         gitSubprocessClient.gitInit();
     }
 
@@ -60,8 +62,18 @@ public class App {
         gitSubprocessClient.gitCommit("Initial commit");
     }
 
-    private static void createGitHubRepo() {
+    private static void createGitHubRepo(String description, boolean isPrivate) {
+        try {
+            gitHubApiClient = new GitHubApiClient(userName, getAPIKey());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        RequestParams requestParams = new RequestParams();
+        requestParams.addParam("name", repoName);
+        requestParams.addParam("description", description);
+        requestParams.addParam("private", isPrivate);
 
+        gitHubApiClient.createRepo(requestParams);
     }
 
     private static void setOrigin() {
