@@ -34,13 +34,32 @@ public class App {
         mainPanel.setBackground(Color.blue);
         frame.setContentPane(mainPanel);
 
+        //added logo
         ImageIcon QUBAY = new ImageIcon("QUBAY.png");
         JLabel imageLabel = new JLabel(QUBAY);
         imageLabel.setSize(1024, 1024);
         mainPanel.add(imageLabel);
 
+        //creates button panel
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new FlowLayout());
+        mainPanel.add(buttonPanel, BorderLayout.CENTER);
 
+        //creates buttons 
+        JButton convertButton = new JButton("Convert to Git Repo");
+        convertButton.addActionListener(e -> {
+            convertToGitRepo();
+            createGitHubRepo("Project Description", false);
+            setOrigin();
+            pushCommit();
+            displayURL();
+        });
+        buttonPanel.add(convertButton);
         frame.setVisible(true);
+    }
+
+    private static void convertToGitRepo() {
+        throw new UnsupportedOperationException("Unimplemented method 'convertToGitRepo'");
     }
 
     private static void initializeRepo() {
@@ -95,7 +114,7 @@ public class App {
     }
 
     private static void displayURL() {
-
+        JOptionPane.showMessageDialog(null, "GitHub Repository URL: " + repoUrl);
     }
 
     private static String getAPIKey() throws IOException {
