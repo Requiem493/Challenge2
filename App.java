@@ -23,7 +23,7 @@ public class App {
     public static void main(String[] args) {
         // create JFrame
         JFrame frame = new JFrame("QBay");
-        frame.setSize(800, 600);
+        frame.setSize(800, 800);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); // make it so when JFrame is closed via the x button, the entire program stops
         frame.setLocationRelativeTo(null); // make JFrame open center screen
         frame.setResizable(false);
@@ -37,7 +37,7 @@ public class App {
         //added logo
         ImageIcon QUBAY = new ImageIcon("QUBAY.png");
         JLabel imageLabel = new JLabel(QUBAY);
-        imageLabel.setSize(1024, 1024);
+        imageLabel.setSize(800, 800);
         mainPanel.add(imageLabel);
 
         //creates button panel
