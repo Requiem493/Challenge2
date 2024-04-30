@@ -89,7 +89,7 @@ public class App {
     }
 
     private static void pushCommit() {
-
+        gitSubprocessClient.gitPush("master");
     }
 
     private static void displayURL() {
