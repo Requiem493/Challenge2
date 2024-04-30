@@ -1,14 +1,12 @@
 import git.tools.client.GitSubprocessClient;
 import github.tools.client.GitHubApiClient;
 import github.tools.client.RequestParams;
-import github.tools.responseObjects.CreateRepoResponse;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.Scanner;
@@ -20,6 +18,7 @@ public class App {
     private static GitHubApiClient gitHubApiClient;
     private static String userName;
     private static String repoName;
+
     public static void main(String[] args) {
         // create JFrame
         JFrame frame = new JFrame("QBay");
@@ -28,7 +27,7 @@ public class App {
         frame.setLocationRelativeTo(null); // make JFrame open center screen
         frame.setResizable(false);
 
-         // create main panel (canvas)
+        // create main panel (canvas)
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(null); // no layout so you can put things wherever you want
         mainPanel.setBackground(Color.blue);
@@ -86,7 +85,7 @@ public class App {
     }
 
     private static void setOrigin() {
-
+        gitSubprocessClient.gitRemoteAdd("origin", String.format("%s.git", getGitHubUrl()));
     }
 
     private static void pushCommit() {
@@ -102,5 +101,9 @@ public class App {
         //File has been gitignored
         Scanner keyReader = new Scanner(new File("key.txt"));
         return keyReader.nextLine();
+    }
+
+    private static String getGitHubUrl() {
+        return gitHubApiClient.getRepoInfo(userName, repoName).getUrl();
     }
 }
