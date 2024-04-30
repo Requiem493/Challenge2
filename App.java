@@ -56,7 +56,8 @@ public class App {
     }
 
     private static void createInitCommit() {
-
+        gitSubprocessClient.gitAddAll();
+        gitSubprocessClient.gitCommit("Initial commit");
     }
 
     private static void createGitHubRepo() {
