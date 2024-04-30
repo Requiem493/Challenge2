@@ -8,6 +8,9 @@ import java.awt.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.CopyOption;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.Scanner;
 
 public class App {
@@ -38,7 +41,6 @@ public class App {
 
 
         frame.setVisible(true);
-
     }
 
     private static void initializeRepo() {
@@ -47,6 +49,13 @@ public class App {
     }
 
     private static void createGitignore() {
+        File sourceFile = new File(".gitignore");
+        File destinationFile = new File(String.format("%s/.gitignore", projectPath));
+        try {
+            Files.copy(sourceFile.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private static void createReadMe() throws IOException {
