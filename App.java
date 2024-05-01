@@ -28,22 +28,35 @@ public class App {
         frame.setLocationRelativeTo(null); // make JFrame open center screen
         frame.setResizable(false);
 
+        //create JLabels
+        JLabel pathLabel = new JLabel("Path: ");
+        JLabel tokenLabel = new JLabel("Github Token: ");
+
+        //create JTextFields
+        JTextField pathField = new JTextField();
+        JTextField tokenField = new JTextField();
+
+        //create JButton
+        JButton submit = new JButton("Submit!");
+        
+
         // create main panel (canvas)
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(null); // no layout so you can put things wherever you want
         mainPanel.setBackground(Color.blue);
-        frame.setContentPane(mainPanel);
 
         //added logo
-        ImageIcon QUBAY = new ImageIcon("QUBAY.png");
+        /* ImageIcon QUBAY = new ImageIcon("QUBAY.png");
         JLabel imageLabel = new JLabel(QUBAY);
         imageLabel.setSize(800, 800);
         mainPanel.add(imageLabel);
-
+ */
         //creates button panel
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout());
+        buttonPanel.setVisible(true);
         mainPanel.add(buttonPanel, BorderLayout.CENTER);
+        buttonPanel.setSize(800, 800);
 
         //creates buttons 
         JButton convertButton = new JButton("Convert to Git Repo");
@@ -55,6 +68,8 @@ public class App {
             displayURL();
         });
         buttonPanel.add(convertButton);
+        frame.setContentPane(mainPanel);
+
         frame.setVisible(true);
     }
 
