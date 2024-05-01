@@ -35,28 +35,37 @@ public class App {
         //create JTextFields
         JTextField pathField = new JTextField();
         JTextField tokenField = new JTextField();
-
-        //create JButton
-        JButton submit = new JButton("Submit!");
-        
+        pathField.setPreferredSize(new Dimension(100, 50));    
+        tokenField.setPreferredSize(new Dimension(100, 50)); 
 
         // create main panel (canvas)
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(null); // no layout so you can put things wherever you want
-        mainPanel.setBackground(Color.blue);
+        mainPanel.setBackground(Color.white);
 
         //added logo
-        /* ImageIcon QUBAY = new ImageIcon("QUBAY.png");
+        ImageIcon QUBAY = new ImageIcon("QUBAY2.png");
         JLabel imageLabel = new JLabel(QUBAY);
-        imageLabel.setSize(800, 800);
+        imageLabel.setSize(50, 50);
         mainPanel.add(imageLabel);
- */
+ 
         //creates button panel
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout());
         buttonPanel.setVisible(true);
-        mainPanel.add(buttonPanel, BorderLayout.CENTER);
+        mainPanel.add(buttonPanel);
         buttonPanel.setSize(800, 800);
+
+        //Labels panel
+        JPanel labelPanel = new JPanel();
+        mainPanel.setLayout(new FlowLayout());
+        mainPanel.setVisible(true);
+        mainPanel.add(pathLabel);
+        mainPanel.add(pathField);
+        mainPanel.add(tokenLabel);
+        mainPanel.add(tokenField);
+        mainPanel.add(buttonPanel);
+        mainPanel.setSize(600,600);
 
         //creates buttons 
         JButton convertButton = new JButton("Convert to Git Repo");
