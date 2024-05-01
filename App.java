@@ -70,7 +70,14 @@ public class App {
         //creates buttons 
         JButton convertButton = new JButton("Convert to Git Repo");
         convertButton.addActionListener(e -> {
-            convertToGitRepo();
+            initializeRepo();
+            createGitignore();
+            try {
+                createReadMe();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+            createInitCommit();
             createGitHubRepo("Project Description", false);
             setOrigin();
             pushCommit();
@@ -80,10 +87,6 @@ public class App {
         frame.setContentPane(mainPanel);
 
         frame.setVisible(true);
-    }
-
-    private static void convertToGitRepo() {
-        throw new UnsupportedOperationException("Unimplemented method 'convertToGitRepo'");
     }
 
     private static void initializeRepo() {
